@@ -29,7 +29,7 @@ for item in include src tests build.sh CMakeLists.txt; do
 done
 
 files_to_update=()
-while IFS= read -r -d $'\0' f; do files_to_update+=("$f"); done < <(find "$PROJECT_NAME" -type f \( -name "CMakeLists.txt" -o -name "build.sh" \) -print0)
+while IFS= read -r -d $'\0' f; do files_to_update+=("$f"); done < <(find "$PROJECT_NAME" -type f \( -name "CMakeLists.txt" -o -name "build.sh" - -name "clean.sh" \) -print0)
 
 if [ ${#files_to_update[@]} -gt 0 ]; then
     echo "Replacing 'Template' -> '$PROJECT_NAME' in copied files..."
